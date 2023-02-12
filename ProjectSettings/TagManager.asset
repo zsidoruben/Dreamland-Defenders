@@ -3,7 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Bed
+  - Click
+  - Sword
+  - Pistol
+  - Uzi
+  - Portal
   layers:
   - Default
   - TransparentFX
