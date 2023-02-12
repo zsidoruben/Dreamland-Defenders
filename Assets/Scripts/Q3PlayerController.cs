@@ -75,18 +75,22 @@ namespace Q3Movement
 
         private void Update()
         {
-            if (m_MoveDirectionNorm.x != 0 || m_MoveDirectionNorm.z != 0)
+            if (anim1 != null || anim2 != null || anim3 != null)
             {
-                anim1.SetBool("moveing", true);
-                anim2.SetBool("moveing", true);
-                anim3.SetBool("moveing", true);
+                if (m_MoveDirectionNorm.x != 0 || m_MoveDirectionNorm.z != 0)
+                {
+                    anim1.SetBool("moveing", true);
+                    anim2.SetBool("moveing", true);
+                    anim3.SetBool("moveing", true);
+                }
+                else
+                {
+                    anim1.SetBool("moveing", false);
+                    anim2.SetBool("moveing", false);
+                    anim3.SetBool("moveing", false);
+                }
             }
-            else
-            {
-                anim1.SetBool("moveing", false);
-                anim2.SetBool("moveing", false);
-                anim3.SetBool("moveing", false);
-            }
+
             m_MoveInput = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
             m_MouseLook.UpdateCursorLock();    
             QueueJump();
