@@ -5834,6 +5834,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8983628609588702147, guid: be12538f1041dab4f80198bf6e2ef8bf,
         type: 3}
+      propertyPath: anim1
+      value: 
+      objectReference: {fileID: 1283057330}
+    - target: {fileID: 8983628609588702147, guid: be12538f1041dab4f80198bf6e2ef8bf,
+        type: 3}
       propertyPath: m_GroundSettings.MaxSpeed
       value: 5
       objectReference: {fileID: 0}
@@ -9053,37 +9058,37 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 38bca0594637949459f4c4dcf37ffd4b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.606
+      value: 0.151
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 38bca0594637949459f4c4dcf37ffd4b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.47
+      value: -0.576
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 38bca0594637949459f4c4dcf37ffd4b,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.697
+      value: 0.621
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 38bca0594637949459f4c4dcf37ffd4b,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.71361655
+      value: 0.71361923
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 38bca0594637949459f4c4dcf37ffd4b,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.26189056
+      value: 0.26189306
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 38bca0594637949459f4c4dcf37ffd4b,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.64819366
+      value: 0.64818984
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 38bca0594637949459f4c4dcf37ffd4b,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.04483137
+      value: -0.04482711
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 38bca0594637949459f4c4dcf37ffd4b,
         type: 3}
@@ -9118,6 +9123,32 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1283057327}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1283057329 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 38bca0594637949459f4c4dcf37ffd4b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1283057327}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1283057330
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1283057329}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5823bd57325a88741a868967ba629dd1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &1297753181
 GameObject:
   m_ObjectHideFlags: 0
@@ -9166,7 +9197,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8539e8c9f61b204cb301d73be2d2823, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time: 0
+  anim: {fileID: 0}
 --- !u!82 &1297753184
 AudioSource:
   m_ObjectHideFlags: 0
@@ -10196,7 +10227,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: dfbfc4ed73e9b2e45995505680e5a126,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dfbfc4ed73e9b2e45995505680e5a126, type: 3}
@@ -10449,7 +10480,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8539e8c9f61b204cb301d73be2d2823, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time: 0
+  anim: {fileID: 1283057330}
 --- !u!82 &1846920040
 AudioSource:
   m_ObjectHideFlags: 0
@@ -10765,7 +10796,7 @@ PrefabInstance:
     - target: {fileID: 7616827711707259798, guid: a6e3e50945d500942abca7abd8102146,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7310751371100462785, guid: a6e3e50945d500942abca7abd8102146, type: 3}
@@ -10794,7 +10825,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8539e8c9f61b204cb301d73be2d2823, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time: 0
+  anim: {fileID: 0}
 --- !u!1 &2000227535 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 89349968900129481, guid: be12538f1041dab4f80198bf6e2ef8bf,
@@ -10813,6 +10844,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be4e7866311548e459e471f06ccde5a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 1283057330}
 --- !u!82 &2000227540
 AudioSource:
   m_ObjectHideFlags: 0

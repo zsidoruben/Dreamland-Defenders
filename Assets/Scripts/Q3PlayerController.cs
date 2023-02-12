@@ -8,6 +8,7 @@ namespace Q3Movement
     [RequireComponent(typeof(CharacterController))]
     public class Q3PlayerController : MonoBehaviour
     {
+        public Animator anim1;
         [System.Serializable]
         public class MovementSettings
         {
@@ -44,19 +45,19 @@ namespace Q3Movement
         /// </summary>
         public float Speed { get { return m_Character.velocity.magnitude; } }
 
-        private CharacterController m_Character;
-        private Vector3 m_MoveDirectionNorm = Vector3.zero;
-        private Vector3 m_PlayerVelocity = Vector3.zero;
+        public CharacterController m_Character;
+        public Vector3 m_MoveDirectionNorm = Vector3.zero;
+        public Vector3 m_PlayerVelocity = Vector3.zero;
 
         // Used to queue the next jump just before hitting the ground.
-        private bool m_JumpQueued = false;
+        public bool m_JumpQueued = false;
 
         // Used to display real time friction values.
-        private float m_PlayerFriction = 0;
+        public float m_PlayerFriction = 0;
 
-        private Vector3 m_MoveInput;
-        private Transform m_Tran;
-        private Transform m_CamTran;
+        public Vector3 m_MoveInput;
+        public Transform m_Tran;
+        public Transform m_CamTran;
 
         private void Start()
         {
@@ -72,6 +73,14 @@ namespace Q3Movement
 
         private void Update()
         {
+            if (m_MoveDirectionNorm.x != 0 || m_MoveDirectionNorm.z != 0)
+            {
+                anim1.SetBool("moveing", true);
+            }
+            else
+            {
+                anim1.SetBool("moveing", false);
+            }
             m_MoveInput = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
             m_MouseLook.UpdateCursorLock();    
             QueueJump();
@@ -91,6 +100,7 @@ namespace Q3Movement
 
             // Move the character.
             m_Character.Move(m_PlayerVelocity * Time.deltaTime);
+
         }
 
         // Queues the next jump.

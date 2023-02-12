@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class WeaponSound : MonoBehaviour
 {
-    public float time;
+    float time;
+    public Animator anim;
+    public bool attacking;
     // Update is called once per frame
     void Update()
     {
-
+        anim.SetBool("attacking", attacking);
         if (Input.GetKey(KeyCode.Mouse0) && !GetComponent<AudioSource>().isPlaying)
         {
             time = GetComponent<AudioSource>().clip.length;
@@ -25,8 +27,11 @@ public class WeaponSound : MonoBehaviour
         GetComponent<AudioSource>().mute = false;
         GetComponent<AudioSource>().volume = Random.Range(0.5f, 0.7f);
         GetComponent<AudioSource>().pitch = Random.Range(0.5f, 0.7f);
+        anim.SetBool("attacking", true);
+        attacking = true;
         GetComponent<AudioSource>().PlayOneShot(GetComponent<AudioSource>().clip);
         yield return new WaitForSeconds(time);
+        attacking = false;
         time = 0;
     }
 }
