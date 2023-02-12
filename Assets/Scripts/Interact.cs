@@ -1,135 +1,192 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using Unity.Burst.CompilerServices;
-using Unity.VisualScripting;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Interact : MonoBehaviour
 {
+    public TextMeshProUGUI error;
     private GameObject click;
-    private GameObject DD500;
-    private GameObject DD1000;
-    private GameObject DD2000;
-    private Collider actualCollider;
+    public List<GameObject> prices;
+    public Collider actualCollider;
     private void Start()
     {
+        error.text = string.Empty;
         actualCollider = null;
         click = GameObject.FindWithTag("Click");
-        DD500 = GameObject.Find("500 DD");
-        DD1000 = GameObject.Find("1000 DD");
-        DD2000 = GameObject.Find("2000 DD");
+
+        for (int i = 0; i < DataBetweenScenes.Weapons.Count; i++)
+        {
+            var price = GameObject.Find(DataBetweenScenes.Weapons[i].price.ToString() + " DD");
+            prices.Add(price);
+            if (price != null && DataBetweenScenes.WeaponInHand != DataBetweenScenes.Weapons[i])
+            {
+                price.SetActive(false);
+            }
+        }
+
         click.SetActive(false);
-        DD500.SetActive(false);
-        DD1000.SetActive(false);
-        DD2000.SetActive(false);
+
         InHandWeaponOutLine();
     }
 
     private void InHandWeaponOutLine()
     {
-        if (DataBetweenScenes.WeaponInHand == "Sword")
+        foreach (var weapon in DataBetweenScenes.Weapons)
         {
-            GameObject.Find("Sword").GetComponent<Outline>().enabled = true;
-        }
-        else if (DataBetweenScenes.WeaponInHand == "Pistol")
-        {
-            GameObject.Find("Pistol").GetComponent<Outline>().enabled = true;
-        }
-        else if (DataBetweenScenes.WeaponInHand == "Uzi")
-        {
-            GameObject.Find("Uzi").GetComponent<Outline>().enabled = true;
+            if (GameObject.Find(weapon.name))
+            {
+                if (DataBetweenScenes.WeaponInHand == weapon)
+                {
+                    GameObject.Find(weapon.name).GetComponent<Outline>().enabled = true;
+                }
+                else
+                {
+                    GameObject.Find(weapon.name).GetComponent<Outline>().enabled = false;
+                }
+            }
+
         }
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0) && actualCollider != null)
+        if (Input.GetKeyDown(KeyCode.Mouse1) && actualCollider != null)
         {
             if (actualCollider.CompareTag("Bed"))
             {
                 DataBetweenScenes.SleepCount++;
                 SceneManager.LoadScene(1);
             }
-
+            if (actualCollider.CompareTag("Portal"))
+            {
+                if (DataBetweenScenes.SleepCount <= 5)
+                {
+                    DataBetweenScenes.DDs += 200;
+                    SceneManager.LoadScene(0);
+                }
+                else
+                {
+                    StartCoroutine(UpdateError("I CAN'T WAKE UP! I need to kill the monster this time."));
+                }
+            }
         }
         if (Input.GetKeyDown(KeyCode.E) && actualCollider != null)
         {
-            if (actualCollider.CompareTag("Uzi"))
+            for (int i = 0; i < DataBetweenScenes.Weapons.Count; i++)
             {
-                if (DataBetweenScenes.Weapons.Contains("Uzi"))
+                var weapon = DataBetweenScenes.Weapons[i];
+                if (actualCollider.CompareTag(weapon.name))
                 {
-                    if (DataBetweenScenes.WeaponInHand != "Uzi")
+                    if (DataBetweenScenes.OwnedWeapons.Contains(weapon))
                     {
-                        DataBetweenScenes.WeaponInHand = "Uzi";
+                        if (DataBetweenScenes.WeaponInHand != weapon)
+                        {
+                            DataBetweenScenes.WeaponInHand = weapon;
+                            for (int j = 0; j < prices.Count; j++)
+                            {
+                                if (j != i)
+                                    prices[j].SetActive(false);
+                            }
+                        }
+                        else
+                        {
+                            DataBetweenScenes.WeaponInHand = null;
+                            for (int j = 0; j < prices.Count; j++)
+                            {
+                                prices[j].SetActive(false);
+                            }
+                        }
+
+                        InHandWeaponOutLine();
                     }
                     else
                     {
-                        DataBetweenScenes.WeaponInHand = "";
+                        StartCoroutine(UpdateError("I don't have this weapon."));
                     }
                 }
             }
+
         }
         if (Input.GetKeyDown(KeyCode.B) && actualCollider != null)
         {
-            if (actualCollider.CompareTag("Uzi") && DataBetweenScenes.DDs >= 2000)
+            foreach (var weapon in DataBetweenScenes.Weapons)
             {
-                if (!DataBetweenScenes.Weapons.Contains("Uzi"))
+                if (actualCollider.CompareTag(weapon.name))
                 {
-                    DataBetweenScenes.Weapons.Add("Uzi");
-                    DataBetweenScenes.DDs -= 2000;
+                    if (DataBetweenScenes.DDs < weapon.price)
+                    {
+                        StartCoroutine(UpdateError("I don't have enough DD."));
+                    }
+                    else if (!DataBetweenScenes.OwnedWeapons.Contains(weapon))
+                    {
+                        DataBetweenScenes.OwnedWeapons.Add(weapon);
+                        DataBetweenScenes.DDs -= weapon.price;
+                    }
+                    else
+                    {
+                        StartCoroutine(UpdateError("I already have this weapon."));
+                    }
                 }
             }
+
         }
     }
+
+    IEnumerator UpdateError(string v)
+    {
+        error.text = v;
+        yield return new WaitForSeconds(2);
+        error.text = "";
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-        actualCollider = other;
+        if (other.name != "First Person Controller" && other.name != "Terrain")
+            actualCollider = other;
         if (other.CompareTag("Bed"))
         {
             other.GetComponent<Outline>().enabled = true;
             click.SetActive(true);
         }
-        else if (other.CompareTag("Sword") && DataBetweenScenes.WeaponInHand != "Sword")
+        if (other.CompareTag("Portal"))
         {
             other.GetComponent<Outline>().enabled = true;
-            DD500.SetActive(true);
+            click.SetActive(true);
         }
-        else if (other.CompareTag("Pistol") && DataBetweenScenes.WeaponInHand != "Pistol")
+        for (int i = 0; i < DataBetweenScenes.Weapons.Count; i++)
         {
-            other.GetComponent<Outline>().enabled = true;
-            DD1000.SetActive(true);
-        }
-        else if (other.CompareTag("Uzi") && DataBetweenScenes.WeaponInHand != "Uzi")
-        {
-            other.GetComponent<Outline>().enabled = true;
-            DD2000.SetActive(true);
+            var weapon = DataBetweenScenes.Weapons[i];
+            if (other.CompareTag(weapon.name) && DataBetweenScenes.WeaponInHand != weapon)
+            {
+                other.GetComponent<Outline>().enabled = true;
+                prices[i].SetActive(true);
+            }
         }
     }
     private void OnTriggerExit(Collider other)
     {
-        actualCollider = null;
+        if (other.name != "First Person Controller" && other.name != "Terrain")
+            actualCollider = null;
         if (other.CompareTag("Bed"))
-        { 
+        {
             other.GetComponent<Outline>().enabled = false;
             click.SetActive(false);
         }
-        else if (other.CompareTag("Sword") && DataBetweenScenes.WeaponInHand != "Sword")
+        if (other.CompareTag("Portal"))
         {
             other.GetComponent<Outline>().enabled = false;
-            DD500.SetActive(false);
+            click.SetActive(false);
         }
-        else if (other.CompareTag("Pistol") && DataBetweenScenes.WeaponInHand != "Pistol")
+        for (int i = 0; i < DataBetweenScenes.Weapons.Count; i++)
         {
-            other.GetComponent<Outline>().enabled = false;
-            DD1000.SetActive(false);
-        }
-        else if (other.CompareTag("Uzi") && DataBetweenScenes.WeaponInHand != "Uzi")
-        {
-            other.GetComponent<Outline>().enabled = false;
-            DD2000.SetActive(false);
+            var weapon = DataBetweenScenes.Weapons[i];
+            if (other.CompareTag(weapon.name) && DataBetweenScenes.WeaponInHand != weapon)
+            {
+                other.GetComponent<Outline>().enabled = false;
+                prices[i].SetActive(false);
+            }
         }
     }
 }

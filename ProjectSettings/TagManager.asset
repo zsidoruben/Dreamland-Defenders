@@ -9,6 +9,7 @@ TagManager:
   - Sword
   - Pistol
   - Uzi
+  - Portal
   layers:
   - Default
   - TransparentFX

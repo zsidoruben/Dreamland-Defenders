@@ -4,22 +4,15 @@ using UnityEngine;
 
 public class WeaponManager : MonoBehaviour
 {
-    GameObject weapon;
-    public string asd;
     // Start is called before the first frame update
     void Start()
     {
-        asd = DataBetweenScenes.WeaponInHand;
-        if (DataBetweenScenes.WeaponInHand != "Uzi")
+        foreach (var weapon in DataBetweenScenes.Weapons)
         {
-            weapon = GameObject.Find("InHandUzi");
-            weapon.SetActive(false);
+            if (DataBetweenScenes.WeaponInHand != weapon)
+            {
+                GameObject.Find("InHand"+weapon.name).SetActive(false);
+            }
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
