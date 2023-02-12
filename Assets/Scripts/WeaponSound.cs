@@ -6,11 +6,16 @@ public class WeaponSound : MonoBehaviour
 {
     float time;
     public Animator anim;
+    private Animator anim2;
     public bool attacking = false;
     // Update is called once per frame
+    private void Start()
+    {
+        anim2 = anim;
+    }
     void Update()
     {
-        anim = GameObject.Find("Automata").GetComponent<Animator>();
+        anim = anim2;
         anim.SetBool("attacking", attacking);
         if (Input.GetKey(KeyCode.Mouse0) && !GetComponent<AudioSource>().isPlaying)
         {
