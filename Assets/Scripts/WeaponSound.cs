@@ -25,8 +25,7 @@ public class WeaponSound : MonoBehaviour
     IEnumerator Play()
     {
         GetComponent<AudioSource>().mute = false;
-        GetComponent<AudioSource>().volume = Random.Range(0.5f, 0.7f);
-        GetComponent<AudioSource>().pitch = Random.Range(0.5f, 0.7f);
+        GetComponent<AudioSource>().volume = 0.7f;
         anim.SetBool("attacking", true);
         attacking = true;
         GetComponent<AudioSource>().PlayOneShot(GetComponent<AudioSource>().clip);

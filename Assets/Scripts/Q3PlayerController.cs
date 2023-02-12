@@ -9,6 +9,8 @@ namespace Q3Movement
     public class Q3PlayerController : MonoBehaviour
     {
         public Animator anim1;
+        public Animator anim2;
+        public Animator anim3;
         [System.Serializable]
         public class MovementSettings
         {
@@ -76,10 +78,14 @@ namespace Q3Movement
             if (m_MoveDirectionNorm.x != 0 || m_MoveDirectionNorm.z != 0)
             {
                 anim1.SetBool("moveing", true);
+                anim2.SetBool("moveing", true);
+                anim3.SetBool("moveing", true);
             }
             else
             {
                 anim1.SetBool("moveing", false);
+                anim2.SetBool("moveing", false);
+                anim3.SetBool("moveing", false);
             }
             m_MoveInput = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
             m_MouseLook.UpdateCursorLock();    
