@@ -20,9 +20,16 @@ public class Interact : MonoBehaviour
         {
             var price = GameObject.Find(DataBetweenScenes.Weapons[i].price.ToString() + " DD");
             prices.Add(price);
-            if (price != null && DataBetweenScenes.WeaponInHand != DataBetweenScenes.Weapons[i])
+            if (price != null)
             {
-                price.SetActive(false);
+                if (DataBetweenScenes.WeaponInHand != DataBetweenScenes.Weapons[i])
+                {
+                    price.SetActive(false);
+                }
+                else
+                {
+                    price.SetActive(true);
+                }
             }
         }
 
@@ -88,6 +95,8 @@ public class Interact : MonoBehaviour
                             {
                                 if (j != i)
                                     prices[j].SetActive(false);
+                                else
+                                    prices[j].SetActive(true);
                             }
                         }
                         else
@@ -98,7 +107,6 @@ public class Interact : MonoBehaviour
                                 prices[j].SetActive(false);
                             }
                         }
-
                         InHandWeaponOutLine();
                     }
                     else

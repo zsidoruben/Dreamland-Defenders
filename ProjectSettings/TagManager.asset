@@ -10,6 +10,8 @@ TagManager:
   - Pistol
   - Uzi
   - Portal
+  - AssasultRifle
+  - Minigun
   layers:
   - Default
   - TransparentFX
