@@ -9,7 +9,7 @@ public class SetSliderValue : MonoBehaviour
     [SerializeField] FloatVariable value;
     [SerializeField] FloatVariable maxValue;
     public Slider slider;
-    public TextMeshPro text;
+    public Text text;
     // Start is called before the first frame update
     void Start()
     {

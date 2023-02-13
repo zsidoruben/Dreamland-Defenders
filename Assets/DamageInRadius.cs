@@ -30,7 +30,7 @@ public class DamageInRadius : MonoBehaviour
         }
         float distanceToPlayer = (PlayerPosition.Value - transform.position).magnitude;
         //CameraShake
-        CameraShaker.Instance.ShakeOnce(60f * 1 / distanceToPlayer, 4f, .1f, .3f);
+        CameraShaker.Instance.ShakeOnce(60f * 1 / distanceToPlayer, 4f, .1f, .1f);
         yield return new WaitForSeconds(lifeTime-delay);
         Destroy(gameObject);
 

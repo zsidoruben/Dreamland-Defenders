@@ -20,8 +20,8 @@ public class PlayerHealth : MonoBehaviour
     void Update()
     {
         colorIntensity -= Time.deltaTime * colorIntensityLoseRate;
-        colorIntensity = Mathf.Min(0, colorIntensity);
-        fullscreenShader.SetFloat("ColorIntensity", colorIntensity);
+        colorIntensity = Mathf.Min(.3f, colorIntensity);
+        fullscreenShader.SetFloat("FullscreenIntensity", colorIntensity);
     }
 
     public void Damage(float damage)
@@ -29,7 +29,7 @@ public class PlayerHealth : MonoBehaviour
         currHealth.Value -= damage;
         if (currHealth.Value <= 50)
         {
-            fullscreenShader.SetFloat("ColorIntensity", 1f);
+            fullscreenShader.SetFloat("FullscreenIntensity", 1f);
         }
         if (currHealth.Value <= 0)
         {
