@@ -12,6 +12,10 @@ public class Interact : MonoBehaviour
     public Collider actualCollider;
     private void Start()
     {
+        if (!DataBetweenScenes.OwnedWeapons.Contains(DataBetweenScenes.Weapons[0]))
+        {
+            DataBetweenScenes.OwnedWeapons.Add(DataBetweenScenes.Weapons[0]);
+        }
         error.text = string.Empty;
         actualCollider = null;
         click = GameObject.FindWithTag("Click");

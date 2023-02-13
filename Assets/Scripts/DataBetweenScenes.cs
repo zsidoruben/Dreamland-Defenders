@@ -8,7 +8,6 @@ public static class DataBetweenScenes
     public static int DDs { get; set; } = 20000;
     public static List<Weapon> Weapons { get; set; } = new()
     {
-        new(){name = "Sword", price = 200, attackSpeed = 10, dmg = 10, range = 10 },
         new(){name = "Pistol", price = 1000, attackSpeed = 10, dmg = 10, range = 10 },
         new(){name = "Uzi", price = 2000, attackSpeed = 10, dmg = 10, range = 10},
         new(){name = "AssasultRifle", price = 5000, attackSpeed = 10, dmg = 10, range = 10},
