@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-[CreateAssetMenu(menuName = "Variables/Vector2")]
+[CreateAssetMenu(menuName = "Variables/Vector3")]
 public class Vector3Variable : ScriptableObject
 {
     // Editor value
