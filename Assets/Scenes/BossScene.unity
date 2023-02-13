@@ -1923,8 +1923,25 @@ PrefabInstance:
     - target: {fileID: 8288127584762862724, guid: 6debe33b261cf16419f48478ad64d12f,
         type: 3}
       propertyPath: SkyAttackRateIncrease
-      value: 10
+      value: -0.01
       objectReference: {fileID: 0}
+    - target: {fileID: 8288127584762862727, guid: 6debe33b261cf16419f48478ad64d12f,
+        type: 3}
+      propertyPath: bossMat
+      value: 
+      objectReference: {fileID: 2100000, guid: d3bd8649367696d49ab724102e103dc0, type: 2}
+    - target: {fileID: 8288127584762862727, guid: 6debe33b261cf16419f48478ad64d12f,
+        type: 3}
+      propertyPath: maxHealth
+      value: 
+      objectReference: {fileID: 11400000, guid: f1627f14e2460ed4f89981e2b71cdeb0,
+        type: 2}
+    - target: {fileID: 8288127584762862727, guid: 6debe33b261cf16419f48478ad64d12f,
+        type: 3}
+      propertyPath: currHealth
+      value: 
+      objectReference: {fileID: 11400000, guid: 4f1ebad14f688514797eacd883fdb397,
+        type: 2}
     - target: {fileID: 8288127584768637487, guid: 6debe33b261cf16419f48478ad64d12f,
         type: 3}
       propertyPath: Particles
