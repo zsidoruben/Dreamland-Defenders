@@ -35,4 +35,9 @@ public class DamageInRadius : MonoBehaviour
         Destroy(gameObject);
 
     }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawSphere(transform.position, radius);
+    }
 }

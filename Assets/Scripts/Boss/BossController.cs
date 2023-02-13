@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BossController : MonoBehaviour
 {
-    [SerializeField] Transform target;
+    [SerializeField] Vector3Variable target;
     Rigidbody rb;
     public float speed;
     public float maxHeight = 0.776f ;
@@ -18,7 +18,7 @@ public class BossController : MonoBehaviour
     }
     private void Update()
     {
-        Vector3 TargetDir = target.position - transform.position;
+        Vector3 TargetDir = target.Value - transform.position;
         if (TargetDir.magnitude >= 1)
         {
             Vector3 targetPos = transform.position + TargetDir.normalized * speed * Time.deltaTime;

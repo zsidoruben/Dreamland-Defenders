@@ -395,8 +395,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 502d1e9b93167fa498fb83d52e7647e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SkyAttackEffect: {fileID: 0}
-  SkyAttackRate: {fileID: 11400000, guid: 756efac6cafe9104982616c8dbb39b21, type: 2}
+  SkyAttackEffect: {fileID: 6596629359815546878, guid: 9efb3f80ffceae642b4f04a6d53289ea,
+    type: 3}
+  SkyAttackRate: 1
+  SkyAttackRateIncrease: 0
+  PlayerPos: {fileID: 11400000, guid: f2d0fb2fc85aa6c4dbacb296e3a7e42f, type: 2}
 --- !u!114 &8288127584762862727
 MonoBehaviour:
   m_ObjectHideFlags: 0
