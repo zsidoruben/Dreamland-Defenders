@@ -59,6 +59,7 @@ public class Interact : MonoBehaviour
 
     private void Update()
     {
+
         if (Input.GetKeyDown(KeyCode.Mouse1) && actualCollider != null)
         {
             if (actualCollider.CompareTag("Bed"))
@@ -91,13 +92,6 @@ public class Interact : MonoBehaviour
                         if (DataBetweenScenes.WeaponInHand != weapon)
                         {
                             DataBetweenScenes.WeaponInHand = weapon;
-                            for (int j = 0; j < prices.Count; j++)
-                            {
-                                if (j != i)
-                                    prices[j].SetActive(false);
-                                else
-                                    prices[j].SetActive(true);
-                            }
                         }
                         else
                         {
@@ -105,6 +99,21 @@ public class Interact : MonoBehaviour
                             for (int j = 0; j < prices.Count; j++)
                             {
                                 prices[j].SetActive(false);
+                            }
+                        }
+                        for (int k = 0; k < DataBetweenScenes.Weapons.Count; k++)
+                        {
+                            var price = GameObject.Find(DataBetweenScenes.Weapons[k].price.ToString() + " DD");
+                            if (price != null)
+                            {
+                                if (DataBetweenScenes.WeaponInHand != DataBetweenScenes.Weapons[k])
+                                {
+                                    price.SetActive(false);
+                                }
+                                else
+                                {
+                                    price.SetActive(true);
+                                }
                             }
                         }
                         InHandWeaponOutLine();
