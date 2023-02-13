@@ -1868,7 +1868,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -3846018093981099296, guid: 4072d78b567799a42871bbbae559a606, type: 3}
+  - {fileID: -3846018093981099296, guid: dfbfc4ed73e9b2e45995505680e5a126, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3010,7 +3010,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -3846018093981099296, guid: 38bca0594637949459f4c4dcf37ffd4b, type: 3}
+  - {fileID: -3846018093981099296, guid: dfbfc4ed73e9b2e45995505680e5a126, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5082,6 +5082,36 @@ PrefabInstance:
       propertyPath: m_Name
       value: First Person Controller
       objectReference: {fileID: 0}
+    - target: {fileID: 89349968901713326, guid: be12538f1041dab4f80198bf6e2ef8bf,
+        type: 3}
+      propertyPath: prices.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 89349968901713326, guid: be12538f1041dab4f80198bf6e2ef8bf,
+        type: 3}
+      propertyPath: prices.Array.data[0]
+      value: 
+      objectReference: {fileID: 73178269}
+    - target: {fileID: 89349968901713326, guid: be12538f1041dab4f80198bf6e2ef8bf,
+        type: 3}
+      propertyPath: prices.Array.data[1]
+      value: 
+      objectReference: {fileID: 2121710713}
+    - target: {fileID: 89349968901713326, guid: be12538f1041dab4f80198bf6e2ef8bf,
+        type: 3}
+      propertyPath: prices.Array.data[2]
+      value: 
+      objectReference: {fileID: 96559213}
+    - target: {fileID: 89349968901713326, guid: be12538f1041dab4f80198bf6e2ef8bf,
+        type: 3}
+      propertyPath: prices.Array.data[3]
+      value: 
+      objectReference: {fileID: 2031569057}
+    - target: {fileID: 89349968901713326, guid: be12538f1041dab4f80198bf6e2ef8bf,
+        type: 3}
+      propertyPath: prices.Array.data[4]
+      value: 
+      objectReference: {fileID: 196453927}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: be12538f1041dab4f80198bf6e2ef8bf, type: 3}
 --- !u!1001 &6548640613946783211
