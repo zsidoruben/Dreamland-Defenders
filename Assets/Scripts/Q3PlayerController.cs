@@ -39,7 +39,6 @@ namespace Q3Movement
         [SerializeField] private MovementSettings m_GroundSettings = new MovementSettings(7, 14, 10);
         [SerializeField] private MovementSettings m_AirSettings = new MovementSettings(7, 2, 2);
         [SerializeField] private MovementSettings m_StrafeSettings = new MovementSettings(1, 50, 50);
-        [SerializeField] private Vector3Variable PlayerPos;
 
         /// <summary>
         /// Returns player's current speed.
@@ -101,8 +100,6 @@ namespace Q3Movement
 
             // Move the character.
             m_Character.Move(m_PlayerVelocity * Time.deltaTime);
-
-            PlayerPos.Value = transform.position;
 
         }
 

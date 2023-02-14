@@ -10,16 +10,21 @@ TagManager:
   - Pistol
   - Uzi
   - Portal
+<<<<<<< HEAD
   - Ground
+=======
+  - AssasultRifle
+  - Minigun
+>>>>>>> parent of bffd734 (Merge branch 'master' into Interaction-system)
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Player
+  - 
   - Water
   - UI
-  - Boss
-  - Ground
+  - 
+  - 
   - 
   - 
   - 
