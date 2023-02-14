@@ -10,8 +10,6 @@ TagManager:
   - Pistol
   - Uzi
   - Portal
-  - AssasultRifle
-  - Minigun
   - Ground
   layers:
   - Default

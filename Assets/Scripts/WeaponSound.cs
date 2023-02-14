@@ -6,16 +6,10 @@ public class WeaponSound : MonoBehaviour
 {
     float time;
     public Animator anim;
-    private Animator anim2;
-    public bool attacking = false;
+    public bool attacking;
     // Update is called once per frame
-    private void Start()
-    {
-        anim2 = anim;
-    }
     void Update()
     {
-        anim = anim2;
         anim.SetBool("attacking", attacking);
         if (Input.GetKey(KeyCode.Mouse0) && !GetComponent<AudioSource>().isPlaying)
         {
@@ -31,7 +25,9 @@ public class WeaponSound : MonoBehaviour
     IEnumerator Play()
     {
         GetComponent<AudioSource>().mute = false;
-        GetComponent<AudioSource>().volume = 0.7f;
+        GetComponent<AudioSource>().volume = Random.Range(0.5f, 0.7f);
+        GetComponent<AudioSource>().pitch = Random.Range(0.5f, 0.7f);
+        anim.SetBool("attacking", true);
         attacking = true;
         GetComponent<AudioSource>().PlayOneShot(GetComponent<AudioSource>().clip);
         yield return new WaitForSeconds(time);

@@ -12,10 +12,6 @@ public class Interact : MonoBehaviour
     public Collider actualCollider;
     private void Start()
     {
-        if (!DataBetweenScenes.OwnedWeapons.Contains(DataBetweenScenes.Weapons[0]))
-        {
-            DataBetweenScenes.OwnedWeapons.Add(DataBetweenScenes.Weapons[0]);
-        }
         error.text = string.Empty;
         actualCollider = null;
         click = GameObject.FindWithTag("Click");
@@ -24,16 +20,9 @@ public class Interact : MonoBehaviour
         {
             var price = GameObject.Find(DataBetweenScenes.Weapons[i].price.ToString() + " DD");
             prices.Add(price);
-            if (price != null)
+            if (price != null && DataBetweenScenes.WeaponInHand != DataBetweenScenes.Weapons[i])
             {
-                if (DataBetweenScenes.WeaponInHand != DataBetweenScenes.Weapons[i])
-                {
-                    price.SetActive(false);
-                }
-                else
-                {
-                    price.SetActive(true);
-                }
+                price.SetActive(false);
             }
         }
 
@@ -63,7 +52,6 @@ public class Interact : MonoBehaviour
 
     private void Update()
     {
-
         if (Input.GetKeyDown(KeyCode.Mouse1) && actualCollider != null)
         {
             if (actualCollider.CompareTag("Bed"))
@@ -96,6 +84,11 @@ public class Interact : MonoBehaviour
                         if (DataBetweenScenes.WeaponInHand != weapon)
                         {
                             DataBetweenScenes.WeaponInHand = weapon;
+                            for (int j = 0; j < prices.Count; j++)
+                            {
+                                if (j != i)
+                                    prices[j].SetActive(false);
+                            }
                         }
                         else
                         {
@@ -105,21 +98,7 @@ public class Interact : MonoBehaviour
                                 prices[j].SetActive(false);
                             }
                         }
-                        for (int k = 0; k < DataBetweenScenes.Weapons.Count; k++)
-                        {
-                            var price = GameObject.Find(DataBetweenScenes.Weapons[k].price.ToString() + " DD");
-                            if (price != null)
-                            {
-                                if (DataBetweenScenes.WeaponInHand != DataBetweenScenes.Weapons[k])
-                                {
-                                    price.SetActive(false);
-                                }
-                                else
-                                {
-                                    price.SetActive(true);
-                                }
-                            }
-                        }
+
                         InHandWeaponOutLine();
                     }
                     else
